@@ -8,10 +8,125 @@
         <title>Library</title>
 
         <link rel="stylesheet" href="style.css">
+
         <script src="script.js" defer></script>
     </head>
 
     <body>
-        
+        <header>
+            <div class="header-left">
+                <h1 class="title">Library</h1>
+
+                <h2 class="subtitle">
+                    A simple e-library to put your beloved books on display
+                </h2>
+            </div>
+
+            <div class="header-right">
+                <template class="add-book-button-template">
+                    <button type="button" title="Add a new book to your library" class="header-button add-book">
+                        Add Book
+                    </button>
+                </template>
+            </div>
+        </header>
+
+        <main>
+            <div class="section library-section">
+                <h3 class="section-title">Library</h3>
+
+                <div class="empty-library-prompt-container" hidden>
+                    <p class="empty-library-message">
+                        Your library is empty!
+
+                        <span class="empty-library-prompt">
+                            Add a book to get started.
+                        </span>
+                    </p>
+                </div>
+
+                <ul class="book-list">
+                    <template class="book-card-li-template">
+                        <li class="book-card">
+                            <h4 class="book-title">
+                                <cite></cite>
+                            </h4>
+
+                            <div class="book-author-and-genre">
+                                <span class="book-author"></span>
+                                <span class="book-genre"></span>
+                            </div>
+
+                            <span class="number-of-pages"></span>
+
+                            <p class="book-description"></p>
+
+                            <div class="book-card-buttons">
+                                <div class="book-status-container">
+                                    Status:
+                                    <span class="book-status"></span>
+
+                                    <button type="button" title="Mark book as read/unread" aria-label="Mark book as read or unread" class="card-button mark-as-read"></button>
+                                </div>
+
+                                <div class="book-buttons-container">
+                                    <button type="button" title="Edit book details" aria-label="Edit book details" class="card-button edit-book"></button>
+                                    <button type="button" title="Delete book" aria-label="Delete book" class="card-button delete-book"></button>
+                                </div>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+
+            <div class="section library-log-section">
+                <h3 class="section-title">Log</h3>
+
+                <table class="stats-table">
+                    <caption>Stats</caption>
+
+                    <!-- `tbody` is implicitly included by user agents, but it is explicitly included here to prevent confusion during styling/scripting.  -->
+                    <tbody>
+                        <tr id="number-of-books">
+                            <th scope="row">Books</th>
+                            <td></td>
+                        </tr>
+
+                        <tr id="number-of-pages">
+                            <th scope="row">Pages</th>
+                            <td></td>
+                        </tr>
+
+                        <tr id="number-of-books-read">
+                            <th scope="row">Books read</th>
+                            <td></td>
+                        </tr>
+
+                        <tr id="number-of-books-unread">
+                            <th scope="row">Books unread</th>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <!-- TODO: Create a script to automatically set `target="_blank"` and `rel="noopener noreferrer"` for anchor elements. -->
+
+                <!--
+                `rel="author"` indicates that the document referenced by the anchor element provides information on the author of this document.
+                
+                Refer to: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel#author.
+                -->
+
+                <p class="credit">
+                    Created by <a href="https://www.github.com/ali-aboulsauood" target="_blank" rel="author noopener noreferrer" class="github-profile-link">Ali Aboul-Sauood</a>.
+                </p>
+
+                <a href="https://www.github.com/ali-aboulsauood/library" target="_blank" rel="noopener noreferrer" class="github-repo-link">View GitHub repository</a>
+            </div>
+        </footer>
     </body>
 </html>
