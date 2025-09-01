@@ -1,0 +1,115 @@
+/* Fonts */
+
+/* Title font */
+@font-face {
+  font-family: 'Cinzel Decorative';
+
+  src:  local('Cinzel Decorative Bold'), local('CinzelDecorative-Bold'),
+        url('assets/fonts/CinzelDecorative/subset-CinzelDecorative-Bold.woff2') format('woff2'),
+        url('assets/fonts/CinzelDecorative/subset-CinzelDecorative-Bold.woff') format('woff');
+
+  font-weight: bold;
+  font-style: normal;
+
+  font-display: swap;
+}
+
+/* Subtitle font */
+@font-face {
+  font-family: 'Noto Serif';
+
+  src:  local('Noto Serif Regular'), local('NotoSerif-Regular'),
+        url('assets/fonts/NotoSerif/subset-NotoSerif-Regular.woff2') format('woff2'),
+        url('assets/fonts/NotoSerif/subset-NotoSerif-Regular.woff') format('woff');
+
+  font-weight: normal;
+  font-style: normal;
+
+  font-display: swap;
+}
+
+/* Body font */
+@font-face {
+  /* Junicode */
+  font-family: 'Junicode';
+
+  src:  local('Junicode'),
+        url('assets/fonts/Junicode/Junicode.woff2') format('woff2'),
+        url('assets/fonts/Junicode/Junicode.woff') format('woff');
+
+  font-weight: normal;
+  font-style: normal;
+
+  font-display: swap;
+}
+
+@font-face {
+  /* Junicode Bold */
+  font-family: 'Junicode';
+
+  src:  local('Junicode Bold'), local('Junicode-Bold'),
+        url('assets/fonts/Junicode/Junicode-Bold.woff2') format('woff2'),
+        url('assets/fonts/Junicode/Junicode-Bold.woff') format('woff');
+
+  font-weight: bold;
+  font-style: normal;
+
+  font-display: swap;
+}
+
+@font-face {
+  /* Junicode Italic */
+  font-family: 'Junicode';
+
+  src:  local('Junicode Italic'), local('Junicode-Italic'),
+        url('assets/fonts/Junicode/Junicode-Italic.woff2') format('woff2'),
+        url('assets/fonts/Junicode/Junicode-Italic.woff') format('woff');
+
+  font-weight: normal;
+  font-style: italic;
+
+  font-display: swap;
+}
+
+@font-face {
+  /* Junicode Bold Italic */
+  font-family: 'Junicode';
+
+  src:  local('Junicode Bold Italic'), local('Junicode-BoldItalic'),
+        url('assets/fonts/Junicode/Junicode-BoldItalic.woff2') format('woff2'),
+        url('assets/fonts/Junicode/Junicode-BoldItalic.woff') format('woff');
+
+  font-weight: bold;
+  font-style: italic;
+
+  font-display: swap;
+}
+
+:root {
+  /* Fonts */
+
+  /* 
+  A combination of the system font stacks used on GitHub, Medium and WordPress Admin (as of October 2022), with some symbol and emoji support.
+
+  Read more on: https://css-tricks.com/snippets/css/system-font-stack/#aa-method-1-system-fonts-at-the-element-level.
+
+  EXPLANATION:
+  ------------
+
+  The stack aims to use the default font of whichever operating system the user is viewing the page on from the following: Apple systems, Windows, Android, and Linux.
+  
+  "Noto Sans" is applied if none of the default fonts of the previous operating systems is found.
+  "Helvetica Neue", "Arial", and sans-serif are applied as fallback for older operating systems.
+
+  "Apple Color Emoji", "Segoe UI Emoji", and "Segoe UI Symbol" are used for rendering symbols and emojis in the native operating system font.
+
+  The `system-ui` generic font family, which can replace `-apple-system, BlinkMacSystemFont`, is not supported in the latest versions of some web browsers, so it is not used.
+  Refer to https://caniuse.com/font-family-system-ui.
+  */
+
+  --system-font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  --title-font: 'Cinzel Decorative', var(--system-font-stack);
+  --subtitle-font: 'Noto Serif', var(--system-font-stack);
+  --body-font: 'Junicode', var(--system-font-stack);
+}
