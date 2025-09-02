@@ -30,7 +30,7 @@
   font-style: normal;
 
   /* The font display strategy for the subtitle font must be set such that the subtitle does not appear before the title. */
-  font-display: var(--title-and-subtitle-font-display);
+  font-display: block;
 }
 
 /* Body fonts */
