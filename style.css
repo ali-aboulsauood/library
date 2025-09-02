@@ -11,7 +11,11 @@
   font-weight: bold;
   font-style: normal;
 
-  font-display: swap;
+  /*
+  Title font is important as it is used in the logo. 
+  The font display strategy for the subtitle font must be set such that the subtitle does not appear before the title.
+  */
+  font-display: block;
 }
 
 /* Subtitle font */
@@ -25,10 +29,11 @@
   font-weight: normal;
   font-style: normal;
 
-  font-display: swap;
+  /* The font display strategy for the subtitle font must be set such that the subtitle does not appear before the title. */
+  font-display: var(--title-and-subtitle-font-display);
 }
 
-/* Body font */
+/* Body fonts */
 @font-face {
   /* Junicode */
   font-family: 'Junicode';
@@ -85,31 +90,249 @@
   font-display: swap;
 }
 
+/* Selector style rules */
+
+/* (A) CSS Variables */
 :root {
   /* Fonts */
 
   /* 
   A combination of the system font stacks used on GitHub, Medium and WordPress Admin (as of October 2022), with some symbol and emoji support.
-
   Read more on: https://css-tricks.com/snippets/css/system-font-stack/#aa-method-1-system-fonts-at-the-element-level.
 
   EXPLANATION:
   ------------
-
   The stack aims to use the default font of whichever operating system the user is viewing the page on from the following: Apple systems, Windows, Android, and Linux.
   
-  "Noto Sans" is applied if none of the default fonts of the previous operating systems is found.
-  "Helvetica Neue", "Arial", and sans-serif are applied as fallback for older operating systems.
+  - "Noto Sans" is applied if none of the default fonts of the previous operating systems is found.
+  - "Helvetica Neue", "Arial", and sans-serif are applied as fallback for older operating systems.
 
-  "Apple Color Emoji", "Segoe UI Emoji", and "Segoe UI Symbol" are used for rendering symbols and emojis in the native operating system font.
+  - "Apple Color Emoji", "Segoe UI Emoji", and "Segoe UI Symbol" are used for rendering symbols and emojis in the native operating system font.
 
+  NOTE:
   The `system-ui` generic font family, which can replace `-apple-system, BlinkMacSystemFont`, is not supported in the latest versions of some web browsers, so it is not used.
   Refer to https://caniuse.com/font-family-system-ui.
   */
-
   --system-font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
   --title-font: 'Cinzel Decorative', var(--system-font-stack);
   --subtitle-font: 'Noto Serif', var(--system-font-stack);
   --body-font: 'Junicode', var(--system-font-stack);
+
+  /* Colors */
+
+  /* TODO: Implement light theme - Use color scheme from the Grand Egyptian Museum (GEM) official homepage https://www.visit-gem.com/en/home */
+
+  --brand-color-primary: #212529;
+  --brand-color-secondary: #7C6857;
+
+  --text-color-content: #FFFFFF;
+
+  /* Other variables */
+
+  /* The outline width and style used for most buttons */
+  --outline-width-and-style: 2px solid;
+
+  /* The transition duration and timing function used for all user interactions. */
+  --transition-duration-and-timing: 0.2s ease-in-out;
+}
+
+/* (B) General styles */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* (b - 1) Anchor styles */
+
+a {
+  --link-text-and-shadow-color: var(--brand-color-secondary);
+
+  color: var(--link-text-and-shadow-color);
+  text-decoration: underline;
+
+  -webkit-transition: text-shadow var(--transition-duration-and-timing);
+  -moz-transition: text-shadow var(--transition-duration-and-timing);
+  -ms-transition: text-shadow var(--transition-duration-and-timing);
+  -o-transition: text-shadow var(--transition-duration-and-timing);
+  transition: text-shadow var(--transition-duration-and-timing);
+}
+
+a:hover, a:focus-visible {
+  text-shadow: 0 0 4px var(--link-text-and-shadow-color);
+}
+
+a:active {
+  color: var(--text-color-content);
+}
+
+/* (B - 2) Button styles */
+
+button {
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+
+  /* Buttons do not inherit the font family of the parent by default. */
+  font-family: var(--body-font);
+}
+
+.add-book::before {
+  /* U+2795: Heavy Plus Sign Unicode character - The Plus Sign Unicode character does not align with the rest of the button text. */
+  content: '\2795';
+}
+
+/* (2) Body styles */
+
+body {
+  display: grid;
+  flex-direction: column;
+
+  /* TODO: Set grid template rows/columns */
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: var(--brand-color-primary);
+  color: var(--text-color-content);
+
+  font-family: var(--body-font);
+}
+
+/* Header styles */
+
+header {
+  /* Required for positioning of the background image attribution paragraph. */
+  --header-border-bottom: 4px;
+  --header-height: 40vh;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  height: var(--header-height);
+
+  background-image: url(assets/images/header-background.jpg),
+
+                    /* Used as a fallback in case the background image fails to load, as well as the background for the bottom border. */
+                    linear-gradient(to right, var(--brand-color-secondary) 50%, var(--brand-color-primary));
+
+  /* Allows the second background image to occupy the bottom border of the header, creating an illusion of a border with a gradient background. */
+  background-clip: padding-box, border-box;
+  border-bottom: 4px solid transparent;
+
+  background-size: cover;
+}
+
+.header-button {
+  --text-and-outline-color: var(--brand-color-secondary);
+
+  font-size: 1.5rem;
+
+  padding: 4px 12px;
+
+  background-color: var(--brand-color-primary);
+  color: var(--text-and-outline-color);
+
+  -webkit-transition: background-color var(--transition-duration-and-timing), color var(--transition-duration-and-timing), outline var(--transition-duration-and-timing);
+  -moz-transition: background-color var(--transition-duration-and-timing), color var(--transition-duration-and-timing), outline var(--transition-duration-and-timing);
+  -ms-transition: background-color var(--transition-duration-and-timing), color var(--transition-duration-and-timing), outline var(--transition-duration-and-timing);
+  -o-transition: background-color var(--transition-duration-and-timing), color var(--transition-duration-and-timing), outline var(--transition-duration-and-timing);
+  transition: background-color var(--transition-duration-and-timing), color var(--transition-duration-and-timing), outline var(--transition-duration-and-timing);
+}
+
+.header-button:hover, .header-button:focus-visible {
+  --text-and-outline-color: var(--brand-color-primary);
+}
+
+.header-button:active {
+  --text-and-outline-color: var(--text-color-content);
+}
+
+.header-button:hover, .header-button:focus-visible, .header-button:active {
+  color: var(--text-and-outline-color);
+  background-color: var(--brand-color-secondary);
+
+  outline: var(--outline-width-and-style) var(--text-and-outline-color);
+}
+
+/* `div.header-top` not yet implemented in the markup. */
+/* 
+.header-top {
+
+}
+*/
+
+.header-bottom {
+  display: flex;
+  
+  justify-content: space-around;
+  align-content: center;
+}
+
+.header-bottom > * {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  flex: 0 1 auto;
+}
+
+.header-left > * {
+  /* The title and subtitle require the same horizontal padding, in order for their contents to start at the same vertical line. */
+  --title-and-subtitle-padding-horizontal: 20px;
+
+  background-color: var(--brand-color-primary);
+  color: var(--brand-color-secondary);
+
+  /* Prevents the background color of each of the title and subtitle from extending to the full width of the parent container. */
+  width: fit-content;
+}
+
+.title {
+  /* `font-weight` set in case another font that has multiple font weights replaces the current one. */
+  font: bold 4.5rem var(--title-font);
+
+  margin-bottom: 20px;
+  padding: 8px var(--title-and-subtitle-padding-horizontal);
+}
+
+.subtitle {
+  font: normal 1.5rem var(--subtitle-font);
+
+  padding: 8px var(--title-and-subtitle-padding-horizontal);
+}
+
+.bg-image-attribution {
+  position: absolute;
+
+  top: calc(var(--header-height) - 3.5vh - var(--header-border-bottom));
+  left: 1vw;
+
+  padding: 2px 8px;
+
+  /*
+  Background image attribution is intended to appear when the user hovers over the background image.
+
+  `display: hidden;` (or the HTML `hidden` attribute) are not used as the `display` property is not animatable.
+  */
+  opacity: 0;
+
+  -webkit-transition: opacity var(--transition-duration-and-timing);
+  -moz-transition: opacity var(--transition-duration-and-timing);
+  -ms-transition: opacity var(--transition-duration-and-timing);
+  -o-transition: opacity var(--transition-duration-and-timing);
+  transition: opacity var(--transition-duration-and-timing);
+}
+
+header:hover .bg-image-attribution {
+  opacity: 1;
 }
