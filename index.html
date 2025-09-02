@@ -21,20 +21,35 @@
 
     <body>
         <header>
-            <div class="header-left">
-                <h1 class="title">Library</h1>
-
-                <h2 class="subtitle">
-                    A simple e-library to put your beloved books on display
-                </h2>
+            <div class="header-top">
+                <!-- To contain additional items later. -->
             </div>
 
-            <div class="header-right">
-                <template class="add-book-button-template">
-                    <button type="button" title="Add a new book to your library" class="header-button add-book">
-                        Add Book
-                    </button>
-                </template>
+            <div class="header-bottom">
+                <div class="header-left">
+                    <h1 class="title">Library</h1>
+                    <h2 class="subtitle">
+                        A simple e-library to put your beloved books on display
+                    </h2>
+
+                    <p class="bg-image-attribution">
+                        Photo by
+                        <a href="https://unsplash.com/@drewcoffman?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="noopener noreferrer" title="Click to open in a new tab">Drew Coffman</a>
+
+                        on
+                        <a href="https://unsplash.com/photos/closeup-photo-of-educational-book-lot-D1Pa78SnrH0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="noopener noreferrer" title="Click to open in a new tab">
+                            Unsplash
+                        </a>
+                    </p>
+                </div>
+
+                <div class="header-right">
+                    <!-- <template class="add-book-button-template"> -->
+                        <button type="button" title="Add a new book to your library" class="header-button add-book">
+                            Add Book
+                        </button>
+                    <!-- </template> -->
+                </div>
             </div>
         </header>
 
@@ -120,7 +135,7 @@
 
         <footer class="footer">
             <div class="footer-content">
-                <!-- TODO: Create a script to automatically set `target="_blank"` and `rel="noopener noreferrer"` for anchor elements. -->
+                <!-- TODO: Create a script to automatically set `target="_blank"`, `rel="noopener noreferrer", and `title="Click to open in a new tab"` for anchor elements. -->
 
                 <!--
                 `rel="author"` indicates that the document referenced by the anchor element provides information on the author of this document.
@@ -129,10 +144,10 @@
                 -->
 
                 <p class="credit">
-                    Created by <a href="https://www.github.com/ali-aboulsauood" target="_blank" rel="author noopener noreferrer" class="github-profile-link">Ali Aboul-Sauood</a>.
+                    Created by <a href="https://www.github.com/ali-aboulsauood" target="_blank" rel="author noopener noreferrer" title="Click to open in a new tab" class="github-profile-link">Ali Aboul-Sauood</a>.
                 </p>
 
-                <a href="https://www.github.com/ali-aboulsauood/library" target="_blank" rel="noopener noreferrer" class="github-repo-link">View GitHub repository</a>
+                <a href="https://www.github.com/ali-aboulsauood/library" target="_blank" rel="noopener noreferrer" title="Click to open in a new tab" class="github-repo-link">View GitHub repository</a>
             </div>
         </footer>
     </body>
