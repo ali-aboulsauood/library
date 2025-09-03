@@ -22,7 +22,7 @@
     <body>
         <header>
             <div class="header-top">
-                <!-- To contain additional items later. -->
+                <!-- To contain additional elements later. -->
             </div>
 
             <div class="header-bottom">
@@ -44,56 +44,76 @@
                 </div>
 
                 <div class="header-right">
-                    <!-- <template class="add-book-button-template"> -->
+                    <template id="add-book-button-template">
                         <button type="button" title="Add a new book to your library" class="header-button add-book">
                             Add Book
                         </button>
-                    <!-- </template> -->
+                    </template>
+
+                    <!-- "Add Book" button to be placed here using JavaScript. -->
                 </div>
             </div>
         </header>
 
         <main>
             <div class="section library-section">
-                <h3 class="section-title">Library</h3>
+                <div class="section-header">
+                    <h3 class="section-title">Library</h3>
+                    <!-- "Add Book" button to be placed here using JavaScript. -->
+                </div>
 
                 <div class="empty-library-prompt-container" hidden>
-                    <p class="empty-library-message">
-                        Your library is empty!
+                    <!-- The following `div` is needed to center its contents. -->
+                    <div>
+                        <p class="empty-library-message">
+                            Your library is empty!
+                            
+                            <span class="empty-library-prompt">
+                                Add a book to get started.
+                            </span>
+                        </p>
 
-                        <span class="empty-library-prompt">
-                            Add a book to get started.
-                        </span>
-                    </p>
+                    <!-- "Add Book" button to be placed here using JavaScript. -->
+                    </div>
                 </div>
 
                 <ul class="book-list">
-                    <template class="book-card-li-template">
+                    <template id="book-card-li-template">
                         <li class="book-card">
                             <h4 class="book-title">
                                 <cite></cite>
                             </h4>
 
-                            <div class="book-author-and-genre">
+                            <div class="book-info-row">
                                 <span class="book-author"></span>
                                 <span class="book-genre"></span>
+                                <span class="number-of-pages"></span>
                             </div>
-
-                            <span class="number-of-pages"></span>
 
                             <p class="book-description"></p>
 
                             <div class="book-card-buttons">
                                 <div class="book-status-container">
-                                    Status:
+                                    <span class="book-status-label">Status:</span>
                                     <span class="book-status"></span>
 
-                                    <button type="button" title="Mark book as read/unread" aria-label="Mark book as read or unread" class="card-button mark-as-read"></button>
+                                    (<button type="button" title="Mark book as read/unread" aria-label="Mark book as read or unread" class="card-button mark-as-read-unread"></button>)
                                 </div>
 
                                 <div class="book-buttons-container">
-                                    <button type="button" title="Edit book details" aria-label="Edit book details" class="card-button edit-book"></button>
-                                    <button type="button" title="Delete book" aria-label="Delete book" class="card-button delete-book"></button>
+                                    <button type="button" title="Edit book details" aria-label="Edit book details" class="card-button edit-book">
+                                        <!-- `pencil.svg` -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
+                                        </svg>
+                                    </button>
+
+                                    <button type="button" title="Delete book" aria-label="Delete book" class="card-button delete-book">
+                                        <!-- `delete.svg` -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
                         </li>

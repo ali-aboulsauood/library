@@ -24,12 +24,90 @@ function addBook({ title, author, genre, pages, read, description }) {
 
 // Contains all the books the user has added to their library, in addition to a starting example book.
 const allBooks = [
-    // A starting example book.
-    new Book("The Odin Project", "Erik Trautman", "Web Dev", null, false, "Not exactly a book, but it is the great online web development tutorial that helped me create this library :)"),
+    // Starting Example book
+    new Book(
+        "The Odin Project", 
+        "Erik Trautman",
+        "Web Dev",
+        244,
+        false,
+        "Not exactly a book, but it is the great online web development tutorial that helped me build this project :)"
+    ),
 ];
 
-function displayAllBooks() {
-    allBooks.forEach((book) => {
-        
+const emptyLibraryPromptContainer = document.querySelector(".empty-library-prompt-container");
+const bookList = document.querySelector(".book-list");
+
+// Appends the "Add Book" button to the elements of the document it is supposed to be a child of, and adds an event listener.
+function appendAddBookButton() {
+    // (1) Append the "Add Book" button
+
+    const addBookButtonContainers = [
+        document.querySelector(".header-right"),
+        document.querySelector(".library-section > .section-header"),
+        emptyLibraryPromptContainer.firstElementChild
+    ];
+
+    const addBookButton = document.querySelector("#add-book-button-template").content.cloneNode(true);
+    addBookButtonContainers.forEach(container => container.appendChild(addBookButton.cloneNode(true)));
+
+    // (2) Add event listener
+
+    document.addEventListener('click', (event) => {
+        if (event.target.matches(".add-book")) {
+            // TODO
+        }
     });
-}
+} appendAddBookButton();
+
+function displayAllBooks() {
+    // (1) Return early if the library is empty
+
+    const isLibraryEmpty = (allBooks.length === 0);
+
+    [emptyLibraryPromptContainer.hidden, bookList.hidden] = (isLibraryEmpty) ? [false, true] : [true, false];
+    
+    if (isLibraryEmpty)
+        return;
+
+    // (2) Display all book cards if the library is not empty
+    allBooks.forEach(book => {
+        const bookCard = bookList.querySelector("#book-card-li-template").content.cloneNode(true);
+
+        const bookPages = `${book.pages} page${(book.pages === 1) ? "" : "s"}`;
+        const bookStatus = (book.read ? "read" : "unread");
+
+        bookCard.querySelector(".book-title > cite").textContent = book.title;
+        bookCard.querySelector(".book-author").textContent = book.author;
+        bookCard.querySelector(".book-genre").textContent = book.genre;
+        bookCard.querySelector(".number-of-pages").textContent = bookPages;
+        bookCard.querySelector(".book-description").textContent = book.description;
+        bookCard.querySelector(".book-status").textContent = bookStatus;
+
+        const markAsReadUnreadButton = bookCard.querySelector(".mark-as-read-unread");
+        const markAsReadButtonTitleAndText = "mark as " + (book.read ? "un" : "") + "read";
+
+        markAsReadUnreadButton.setAttribute("title", markAsReadButtonTitleAndText);
+        markAsReadUnreadButton.textContent = markAsReadButtonTitleAndText;
+
+        bookList.appendChild(bookCard);
+    });
+
+    // (3) Add event listeners
+
+    document.addEventListener('click', (event) => {
+        if (event.target.matches(".mark-as-read-unread")) {
+            // TODO
+
+            return;
+        }
+
+        if (event.target.matches(".edit-book")) {
+            // TODO
+        }
+
+        if (event.target.matches(".delete-book")) {
+            // TODO
+        }
+    });
+} displayAllBooks();
