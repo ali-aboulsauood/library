@@ -150,7 +150,7 @@
 
 /* (b - 1) Anchor styles */
 
-a {
+a, .mark-as-read-unread {
   --link-text-and-shadow-color: var(--brand-color-secondary);
 
   color: var(--link-text-and-shadow-color);
@@ -163,11 +163,11 @@ a {
   transition: text-shadow var(--transition-duration-and-timing);
 }
 
-a:hover, a:focus-visible {
+a:hover, a:focus-visible, .mark-as-read-unread:hover, .mark-as-read-unread:focus-visible {
   text-shadow: 0 0 4px var(--link-text-and-shadow-color);
 }
 
-a:active {
+a:active, .mark-as-read-unread:active {
   color: var(--text-color-content);
 }
 
@@ -183,18 +183,42 @@ button {
   font-family: var(--body-font);
 }
 
+.add-book {
+  outline: var(--outline-width-and-style) var(--brand-color-secondary);
+}
+
 .add-book::before {
   /* U+2795: Heavy Plus Sign Unicode character - The Plus Sign Unicode character does not align with the rest of the button text. */
   content: '\2795';
 }
 
+/* (B - 3) Image styles */
+
+svg {
+  --width-and-height: 90%;
+
+  width: var(--width-and-height);
+  height: var(--width-and-height);
+}
+
 /* (2) Body styles */
 
-body {
-  display: grid;
-  flex-direction: column;
+/*
+NOTE: for the purposes of this project:
+1. Flexbox will be used for one-dimensional layouts, while Grid will be used for two-dimensional ones, and for centering, with exception for the `body` and `main` elements (see below).
+2. The `rem` and `em` units will be used exclusively for text-related properties.
+*/
 
-  /* TODO: Set grid template rows/columns */
+body {
+  /*
+  Grid used for full page layout as it causes less layout shifting than Flexbox on slower connections (so long as content does not define grid tracks or grid track sizes).
+
+  Read more: https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/.
+  */
+  display: grid;
+
+  /* The header and footer heights are set to values that are not content-relative in their respective selectors. */
+  grid-template-rows: auto 1fr auto;
 
   width: 100vw;
   height: 100vh;
@@ -272,9 +296,7 @@ header {
 
 .header-bottom {
   display: flex;
-  
   justify-content: space-around;
-  align-content: center;
 }
 
 .header-bottom > * {
@@ -282,8 +304,6 @@ header {
   flex-direction: column;
 
   justify-content: center;
-
-  flex: 0 1 auto;
 }
 
 .header-left > * {
@@ -335,4 +355,190 @@ header {
 
 header:hover .bg-image-attribution {
   opacity: 1;
+}
+
+/* (2) Main styles */
+
+main {
+  /* Grid used here to reduce style rules for sizing child elements. */
+
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+
+  column-gap: 32px;
+
+  padding: 24px 16px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.section-header > .add-book {
+  font-size: 1.2rem;
+}
+
+.section-title {
+  font: bold 1.45rem var(--body-font);
+
+  color: var(--brand-color-secondary);
+}
+
+/* `:not([hidden])` is used as it prevents overriding `display: hidden` set by the attribute by `display: grid`. */
+.empty-library-prompt-container:not([hidden]) {
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.empty-library-prompt-container:not([hidden]) > div {
+  text-align: center;
+
+  color: var(--brand-color-secondary);
+}
+
+.empty-library-message {
+  --font-size: 3rem;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  font-size: var(--font-size);
+
+  line-height: 1.2;
+}
+
+.empty-library-prompt {
+  font-size: calc(var(--font-size) * 0.5);
+
+  color: var(--text-color-content);
+}
+
+.empty-library-message::after {
+  /* U+2500: Box Drawings Line Horizontal Unicode character. */
+  content: '\2500'
+}
+
+.book-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+
+  padding: 16px;
+}
+
+.book-card {
+  --outline-width: 2px;
+  --border-left-width: 8px;
+
+  display: flex;
+  flex-direction: column;
+
+  border-left: var(--border-left-width) solid var(--brand-color-secondary);
+  padding: 16px;
+
+  outline: var(--outline-width) solid var(--brand-color-secondary);
+  
+  background-color: inherit;
+  color: var(--text-color-content);
+}
+
+.book-card, .book-buttons-container > .card-button {
+  -webkit-transition: box-shadow var(--transition-duration-and-timing), outline-width var(--transition-duration-and-timing), color var(--transition-duration-and-timing);
+  -moz-transition: box-shadow var(--transition-duration-and-timing), outline-width var(--transition-duration-and-timing), color var(--transition-duration-and-timing);
+  -ms-transition: box-shadow var(--transition-duration-and-timing), outline-width var(--transition-duration-and-timing), color var(--transition-duration-and-timing);
+  -o-transition: box-shadow var(--transition-duration-and-timing), outline-width var(--transition-duration-and-timing), color var(--transition-duration-and-timing);
+  transition: box-shadow var(--transition-duration-and-timing), outline-width var(--transition-duration-and-timing), color var(--transition-duration-and-timing);
+}
+
+.book-card:hover, .book-buttons-container > .card-button:hover, .book-buttons-container > .card-button:focus-visible {
+  --outline-width-increase: 1px;
+
+  box-shadow: 0px 0px 16px var(--brand-color-secondary);
+
+  outline-width: calc(var(--outline-width) + var(--outline-width-increase));
+  border-left-width: calc(var(--border-left-width) - var(--outline-width-increase));
+}
+
+.book-title {
+  font-size: 1.4rem;
+
+  color: var(--brand-color-secondary);
+}
+
+.book-title > cite {
+  font-style: normal;
+}
+
+.book-info-row {
+  font-size: 1.05rem;
+
+  margin-bottom: 8px;
+}
+
+.book-info-row > *:not(:last-child)::after {
+  /* U+00B7: Middle Dot Unicode character. Leading space ensures that the character is centered between the author's name and book genre. */
+  content: ' \00B7';
+
+  font-size: 1.05em;
+
+  color: var(--brand-color-secondary);
+}
+
+.book-description {
+  font-size: 1.03rem;
+
+  word-spacing: -1.5px;
+
+  margin-bottom: 24px;
+}
+
+.book-status-label {
+  font-weight: bold;
+
+  color: var(--brand-color-secondary);
+}
+
+.card-button {
+  background: none;
+}
+
+.mark-as-read-unread {
+  font-size: 1em;
+
+  color: var(--brand-color-secondary);
+}
+
+.book-buttons-container {
+  display: flex;
+  justify-content: flex-end;
+
+  gap: 16px;
+}
+
+.book-buttons-container > .card-button {
+  --width-and-height: 40px;
+
+  display: grid;
+  place-items: center;
+
+  width: var(--width-and-height);
+  height: var(--width-and-height);
+
+  padding: 8px;
+
+  outline: var(--outline-width-and-style) var(--brand-color-secondary);
+
+  color: var(--brand-color-secondary);
+}
+
+.book-buttons-container > .card-button:active {
+  --text-and-outline-color: var(--text-color-content);
+
+  outline-color: var(--text-and-outline-color);
+  color: var(--text-and-outline-color);
 }
