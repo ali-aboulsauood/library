@@ -50,14 +50,6 @@ function appendAddBookButton() {
 
     const addBookButton = document.querySelector("#add-book-button-template").content.cloneNode(true);
     addBookButtonContainers.forEach(container => container.appendChild(addBookButton.cloneNode(true)));
-
-    // (2) Add event listener
-
-    document.addEventListener('click', (event) => {
-        if (event.target.matches(".add-book")) {
-            // TODO
-        }
-    });
 } appendAddBookButton();
 
 function displayAllBooks() {
@@ -84,11 +76,11 @@ function displayAllBooks() {
         bookCard.querySelector(".book-description").textContent = book.description;
         bookCard.querySelector(".book-status").textContent = bookStatus;
 
-        const markAsReadUnreadButton = bookCard.querySelector(".mark-as-read-unread");
+        const markAsReadButton = bookCard.querySelector(".mark-as-read-unread");
         const markAsReadButtonTitleAndText = "mark as " + (book.read ? "un" : "") + "read";
 
-        markAsReadUnreadButton.setAttribute("title", markAsReadButtonTitleAndText);
-        markAsReadUnreadButton.textContent = markAsReadButtonTitleAndText;
+        markAsReadButton.setAttribute("title", markAsReadButtonTitleAndText);
+        markAsReadButton.textContent = markAsReadButtonTitleAndText;
 
         bookList.appendChild(bookCard);
     });
@@ -102,12 +94,26 @@ function displayAllBooks() {
             return;
         }
 
-        if (event.target.matches(".edit-book")) {
-            // TODO
-        }
-
         if (event.target.matches(".delete-book")) {
             // TODO
         }
     });
 } displayAllBooks();
+
+document.addEventListener('click', (event) => {
+    if (event.target.matches(".add-book, .edit-book")) {
+        const dialog = document.querySelector("#add-edit-book-dialog");
+
+        // Open the dialog as a modal.
+        dialog.showModal();
+
+        const dialogTitle = dialog.querySelector(".dialog-title");
+        dialogTitle.textContent = (event.target.matches(".add-book")) ? "Add New Book" : "Edit Book";
+
+        dialog.addEventListener('click', (event) => {
+            if (event.target.matches(".close-button"))
+                // Close the dialog.
+                dialog.close();
+        });
+    }
+});
