@@ -84,36 +84,41 @@ function displayAllBooks() {
 
         bookList.appendChild(bookCard);
     });
-
-    // (3) Add event listeners
-
-    document.addEventListener('click', (event) => {
-        if (event.target.matches(".mark-as-read-unread")) {
-            // TODO
-
-            return;
-        }
-
-        if (event.target.matches(".delete-book")) {
-            // TODO
-        }
-    });
 } displayAllBooks();
 
 document.addEventListener('click', (event) => {
-    if (event.target.matches(".add-book, .edit-book")) {
-        const dialog = document.querySelector("#add-edit-book-dialog");
+    if (event.target.matches(".mark-as-read-unread")) {
+        // TODO
 
+        return;
+    }
+
+    if (event.target.matches(".delete-book")) {
+        // TODO
+    }
+});
+
+const dialog = document.querySelector("#add-edit-book-dialog");
+
+document.addEventListener('click', (event) => {
+    if (event.target.matches(".add-book, .edit-book")) {
         // Open the dialog as a modal.
         dialog.showModal();
 
         const dialogTitle = dialog.querySelector(".dialog-title");
         dialogTitle.textContent = (event.target.matches(".add-book")) ? "Add New Book" : "Edit Book";
-
-        dialog.addEventListener('click', (event) => {
-            if (event.target.matches(".close-button"))
-                // Close the dialog.
-                dialog.close();
-        });
     }
+});
+
+dialog.addEventListener('click', (event) => {
+    if (event.target.matches(".dialog-close, .dialog-close > *"))
+        // Close the dialog
+        dialog.close();
+});
+
+const description = dialog.querySelector("#book-description");
+const numberOfCharactersLeft = dialog.querySelector(".number-of-characters");
+
+description.addEventListener('input', () => {
+    numberOfCharactersLeft.textContent = (750 - description.value.length);
 });

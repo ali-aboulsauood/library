@@ -148,7 +148,7 @@
   box-sizing: border-box;
 }
 
-/* (b - 1) Anchor styles */
+/* (B - 1) Anchor styles */
 
 a, .mark-as-read-unread {
   --link-text-and-shadow-color: var(--brand-color-secondary);
@@ -183,7 +183,7 @@ button {
   font-family: var(--body-font);
 }
 
-.add-book {
+.add-book, #add-edit-book-form > footer button {
   outline: var(--outline-width-and-style) var(--brand-color-secondary);
 }
 
@@ -231,7 +231,7 @@ body {
 
 /* Header styles */
 
-header {
+body > header {
   /* Required for positioning of the background image attribution paragraph. */
   --header-border-bottom: 4px;
   --header-height: 40vh;
@@ -242,7 +242,9 @@ header {
   justify-content: center;
 
   height: var(--header-height);
+}
 
+body > header, dialog header {
   background-image: url(assets/images/header-background.jpg),
 
                     /* Used as a fallback in case the background image fails to load, as well as the background for the bottom border. */
@@ -256,9 +258,9 @@ header {
 }
 
 .header-button {
-  --text-and-outline-color: var(--brand-color-secondary);
-
   font-size: 1.5rem;
+
+  --text-and-outline-color: var(--brand-color-secondary);
 
   padding: 4px 12px;
 
@@ -447,7 +449,7 @@ main {
   color: var(--text-color-content);
 }
 
-.book-card, .book-buttons-container > .card-button {
+.book-card, .book-buttons-container > .card-button, .close-button, #add-edit-book-form > footer button {
   -webkit-transition: box-shadow var(--transition-duration-and-timing), outline-width var(--transition-duration-and-timing), color var(--transition-duration-and-timing);
   -moz-transition: box-shadow var(--transition-duration-and-timing), outline-width var(--transition-duration-and-timing), color var(--transition-duration-and-timing);
   -ms-transition: box-shadow var(--transition-duration-and-timing), outline-width var(--transition-duration-and-timing), color var(--transition-duration-and-timing);
@@ -455,7 +457,8 @@ main {
   transition: box-shadow var(--transition-duration-and-timing), outline-width var(--transition-duration-and-timing), color var(--transition-duration-and-timing);
 }
 
-.book-card:hover, .book-buttons-container > .card-button:hover, .book-buttons-container > .card-button:focus-visible {
+.book-card:hover, .book-buttons-container > .card-button:hover, .book-buttons-container > .card-button:focus-visible,
+#add-edit-book-form > footer button:hover, #add-edit-book-form > footer button:focus-visible {
   --outline-width-increase: 1px;
 
   box-shadow: 0px 0px 16px var(--brand-color-secondary);
@@ -536,9 +539,257 @@ main {
   color: var(--brand-color-secondary);
 }
 
-.book-buttons-container > .card-button:active {
+.book-buttons-container > .card-button:active, .close-button:active, #add-edit-book-form > footer button:active {
   --text-and-outline-color: var(--text-color-content);
 
   outline-color: var(--text-and-outline-color);
   color: var(--text-and-outline-color);
+}
+
+/* Dialog styles */
+
+dialog {
+  /* Prevents the dialog box from being scrolled towards or away from with the page. */
+  position: fixed;
+  /* Center the dialog box */
+  margin: auto;
+
+  border: 4px solid var(--brand-color-secondary);
+
+  background-color: var(--brand-color-primary);
+  color: var(--text-color-content);
+}
+
+dialog svg {
+  --width-and-height: 32px;
+
+  width: var(--width-and-height);
+  height: var(--width-and-height);
+}
+
+dialog button {
+  background-color: var(--brand-color-primary);
+  color: var(--brand-color-secondary);
+}
+
+.close-button {
+  background: none;
+}
+
+.close-button > svg {
+  --width-and-height: 48px;
+}
+
+/* Prevents the page behind the dialog from being scrolled. */
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+/* The backdrop of the dialog, which should be obscured in some way to indicate that the area behind the dialog is non-interactive until the dialog is closed. */
+dialog::backdrop {
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  
+  /* Refer to this awesome YouTube short: https://youtube.com/shorts/NVxjpnOPGIk?si=2qVeC0XIAZFRhIZB. */
+  background-image: linear-gradient(rgb(0 0 0 / 0.8) 0 0);
+}
+
+#add-edit-book-dialog {
+  width: 50vw;
+}
+
+#add-edit-book-form {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+#add-edit-book-form > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 24px;
+  padding: 16px;
+}
+
+.dialog-title {
+  font-size: 2rem;
+
+  color: var(--brand-color-secondary);
+}
+
+#add-edit-book-form > article {
+  font-size: 1.45rem;
+}
+
+.label-and-input {
+  color: var(--brand-color-secondary);
+
+  margin: 16px;
+  margin-top: 0;
+}
+
+.label-and-input-text {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  cursor: pointer;
+
+  -webkit-transition: color var(--transition-duration-and-timing);
+  -moz-transition: color var(--transition-duration-and-timing);
+  -ms-transition: color var(--transition-duration-and-timing);
+  -o-transition: color var(--transition-duration-and-timing);
+  transition: color var(--transition-duration-and-timing);
+}
+
+label:active, label:has(+ input:focus, + textarea:focus) {
+  color: var(--text-color-content);
+}
+
+label:has(+ :not([type="checkbox"], [required]))::after {
+  content: 'optional';
+  text-transform: uppercase;
+
+  font-size: 1rem;
+}
+
+label:has(+ :not([type="checkbox"], [required]))::after, .characters-left {
+  color: var(--brand-color-primary);
+  background-color: var(--brand-color-secondary);
+
+  padding: 0 2px;
+}
+
+input, textarea {
+  --border-bottom-width: 4px;
+
+  appearance: none;
+
+  caret-color: var(--brand-color-secondary);
+
+  background-color: rgb(255, 255, 255, 0.1);
+  color: var(--text-color-content);
+
+  border: none;
+  border-bottom: var(--border-bottom-width) solid var(--brand-color-secondary);
+
+  padding: 8px;
+
+  font: inherit;
+  font-size: 0.95em;
+
+  -webkit-transition: background-color var(--transition-duration-and-timing), color var(--transition-duration-and-timing), caret-color var(--transition-duration-and-timing), border var(--transition-duration-and-timing), filter var(--transition-duration-and-timing) ;
+  -moz-transition: background-color var(--transition-duration-and-timing), color var(--transition-duration-and-timing), caret-color var(--transition-duration-and-timing), border var(--transition-duration-and-timing), filter var(--transition-duration-and-timing) ;
+  -ms-transition: background-color var(--transition-duration-and-timing), color var(--transition-duration-and-timing), caret-color var(--transition-duration-and-timing), border var(--transition-duration-and-timing), filter var(--transition-duration-and-timing) ;
+  -o-transition: background-color var(--transition-duration-and-timing), color var(--transition-duration-and-timing), caret-color var(--transition-duration-and-timing), border var(--transition-duration-and-timing), filter var(--transition-duration-and-timing) ;
+  transition: background-color var(--transition-duration-and-timing), color var(--transition-duration-and-timing), caret-color var(--transition-duration-and-timing), border var(--transition-duration-and-timing), filter var(--transition-duration-and-timing) ;
+
+  transition-duration: 0.01s;
+}
+
+input::placeholder, textarea::placeholder {
+  color: inherit;
+
+  opacity: 20%;
+}
+
+input:hover, textarea:hover, .close-button:hover, .close-button:focus-visible {
+  -webkit-filter: brightness(1.5);
+  filter: brightness(1.5);
+}
+
+input:hover, textarea:hover {
+  background-color: rgb(255, 255, 255, 0.2);
+}
+
+input:focus, input:focus-visible,
+textarea:focus, textarea:focus-visible {
+  outline: none;
+
+  border-color: var(--text-color-content);
+}
+
+textarea {
+  /* Prevent resizing of the textbox from its bottom-right corner. */
+  resize: none;
+}
+
+.characters-left {
+  justify-self: center;
+  align-self: end;
+
+  font-size: 1.1rem;
+}
+
+.label-and-input-checkbox {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+input[type="checkbox"] {
+  --width-and-height: 28px;
+
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: var(--width-and-height);
+  height: var(--width-and-height);
+
+  font-size: 110%;
+
+  color: inherit;
+}
+
+input[type="checkbox"]:checked::after {
+  content: '\2713';
+
+  position: absolute;
+  top: calc(-1 * (var(--border-bottom-width) + 1px));
+}
+
+#add-edit-book-form > footer {
+  padding: 16px;
+}
+
+#add-edit-book-form > footer > menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 16px;
+}
+
+#add-edit-book-form > footer button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 10px;
+
+  flex: 1 1 50%;
+
+  padding: 2px 8px;
+
+  font-size: 1.2rem;
+}
+
+.close-button {
+  -webkit-transition: filter var(--transition-duration-and-timing), color var(--transition-duration-and-timing);
+  -moz-transition: filter var(--transition-duration-and-timing), color var(--transition-duration-and-timing);
+  -ms-transition: filter var(--transition-duration-and-timing), color var(--transition-duration-and-timing);
+  -o-transition: filter var(--transition-duration-and-timing), color var(--transition-duration-and-timing);
+  transition: filter var(--transition-duration-and-timing), color var(--transition-duration-and-timing);
 }
