@@ -185,17 +185,14 @@
                     <!-- Dialog title is set using JavaScript. -->
                     <h4 class="dialog-title">Add/Edit Book</h4>
 
-                    <button type="button" class="close-button dialog-close" title="Close this dialog and Discard book details">
+                    <button type="button" class="close-button dialog-close" title="Close this dialog and Discard book details" value="discard">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" />
                         </svg>
                     </button>
                 </header>
 
-                <!--
-                1. The `autocomplete` attribute is not set to input elements where the same value is not expected to be used twice.
-                2. The `autocapitalize` attribute defines where should virtual keyboards auto-capitalize the next letter. It is not fully supported in Safari for MacOS.
-                -->
+                <!-- The `autocapitalize` attribute defines where should virtual keyboards auto-capitalize the next letter. It is not fully supported in Safari for MacOS. -->
 
                 <article>
                     <div class="label-and-input label-and-input-text">
@@ -204,7 +201,7 @@
                         The `autofocus` attribute should be set to the element the user is expected to interact with immediately after the dialog box opens.
                         Most developers would set it on the "cancel" button, but I thought it would be better to set it on the first form input, given how large the form is.
                         -->
-                        <input type="text" name="title" id="book-title" autofocus placeholder="Book title" spellcheck="true" autocapitalize="words" required>
+                        <input type="text" name="title" id="book-title" autofocus placeholder="Book title" spellcheck="true" autocomplete="on" autocapitalize="words" required>
                     </div>
                 
                     <div class="label-and-input label-and-input-text">
@@ -219,7 +216,7 @@
                 
                     <div class="label-and-input label-and-input-text">
                         <label for="book-pages">Number of pages</label>
-                        <input type="number" name="pages" id="book-pages" placeholder="A number from 0 to 999999" min="0" max="999999">
+                        <input type="number" name="pages" id="book-pages" placeholder="A number from 0 to 999999" min="0" max="999999" autocomplete="on">
                     </div>
                 
                     <div class="label-and-input label-and-input-checkbox">
@@ -243,13 +240,13 @@
 
                 <footer>
                     <menu>
-                        <button type="submit" class="save-book" title="Save book details">
+                        <button type="submit" class="save-book" title="Save book details" value="save">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" />
                             </svg>
                             Save
                         </button>
-                        <button type="reset" class="discard-button dialog-close" title="Discard book details">
+                        <button type="reset" class="discard-button dialog-close" title="Discard book details" value="discard">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 2C17.5 2 22 6.5 22 12S17.5 22 12 22 2 17.5 2 12 6.5 2 12 2M12 4C10.1 4 8.4 4.6 7.1 5.7L18.3 16.9C19.3 15.5 20 13.8 20 12C20 7.6 16.4 4 12 4M16.9 18.3L5.7 7.1C4.6 8.4 4 10.1 4 12C4 16.4 7.6 20 12 20C13.9 20 15.6 19.4 16.9 18.3Z" />
                             </svg>
