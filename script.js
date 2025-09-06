@@ -135,11 +135,12 @@ document.addEventListener('click', (event) => {
 
 let bookData = [];
 
+const dialogFormElements = Array.from(dialog.querySelectorAll("input, textarea"));
+
 dialog.addEventListener('click', (event) => {
     if (event.target.matches("[value='discard'], [value='discard'] *"))
         dialog.close("noData");
     else if (event.target.matches("[value='save'], [value='save'] *")) {
-        const dialogFormElements = Array.from(dialog.querySelectorAll("input, textarea"));
         bookData = dialogFormElements.map((dialogFormElement) => {
             if (dialogFormElement.type === "checkbox")
                 return (dialogFormElement.checked);
@@ -152,13 +153,6 @@ dialog.addEventListener('click', (event) => {
 
         // The dialog element will be automatically closed due to `method="dialog"` set on the `form` element.
     }
-});
-
-dialog.addEventListener('close', () => {
-    if (dialog.returnValue === "noData")
-        return;
-
-    displayBook(addBook(...bookData));
 });
 
 // Script to update the number of characters left in the description textbox as the user modifies its content.
