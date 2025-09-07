@@ -382,6 +382,8 @@ main {
 }
 
 .section-title {
+  margin-bottom: 20px;
+
   font: bold 1.45rem var(--body-font);
 
   color: var(--brand-color-secondary);
@@ -433,7 +435,8 @@ main {
 
   gap: 24px 20px;
 
-  padding: 20px 0;
+  padding-top: 0;
+  padding-bottom: 20px;
   padding-left: 16px;
 }
 
@@ -803,7 +806,8 @@ input[type="checkbox"]:checked::after {
 }
 
 /* (C) Footer styles */
-footer {
+body > footer {
+  /* TODO: Make the header stick to its position on the viewport and shrink on scrolling down. */
   position: fixed;
   bottom: 0;
 
@@ -818,6 +822,6 @@ footer {
   font-size: 1.1rem;
 }
 
-footer > * {
+body > footer > * {
   display: inline;
 }
