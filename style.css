@@ -428,9 +428,13 @@ main {
 
 .book-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+  grid-template-columns: repeat(3, minmax(450px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(max-content, 1fr));
 
-  padding: 16px;
+  gap: 24px 20px;
+
+  padding: 20px 0;
+  padding-left: 16px;
 }
 
 .book-card {
@@ -498,6 +502,10 @@ main {
   word-spacing: -1.5px;
 
   margin-bottom: 24px;
+}
+
+.book-card-buttons {
+  margin-top: auto;
 }
 
 .book-status-label {
