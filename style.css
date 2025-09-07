@@ -375,6 +375,7 @@ main {
 .section-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .section-header > .add-book {
@@ -382,7 +383,7 @@ main {
 }
 
 .section-title {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 
   font: bold 1.45rem var(--body-font);
 
@@ -555,6 +556,40 @@ main {
 
   outline-color: var(--text-and-outline-color);
   color: var(--text-and-outline-color);
+}
+
+.stats-table {
+  text-align: left;
+}
+
+.stats-table > caption {
+  /* Table caption is meant for screen readers. */
+  opacity: 0;
+
+  height: 0;
+}
+
+/* The `tr` element is apparently not stylable */
+.stats-table th, .stats-table td {
+  border-bottom: 1px solid var(--brand-color-secondary);
+  border-collapse: collapse;
+
+  font-size: 1.1rem;
+
+  padding: 4px 8px;
+}
+
+.stats-table th {
+  background-color: var(--brand-color-secondary);
+  color: var(--brand-color-primary);
+}
+
+.stats-table th:hover {
+  background-color: color-mix(in srgb, var(--brand-color-secondary) 85%, #000000 15%);
+}
+
+.stats-table th:active {
+  background-color: color-mix(in srgb, var(--brand-color-secondary) 85%, #FFFFFF 15%);
 }
 
 /* Dialog styles */
