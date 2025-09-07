@@ -193,11 +193,15 @@ bookList.addEventListener('click', (event) => {
 });
 
 const dialog = document.querySelector("#add-edit-book-dialog");
+const dialogForm = dialog.querySelector("form");
 
 document.addEventListener('click', (event) => {
     if (event.target.matches(".add-book, .edit-book")) {
         // Open the dialog as a modal.
         dialog.showModal();
+
+        // Reset form inputs to their default values.
+        dialogForm.reset();
 
         const isAddBook = event.target.matches(".add-book");
 
