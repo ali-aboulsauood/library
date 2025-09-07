@@ -125,28 +125,29 @@
                 <h3 class="section-title">Log</h3>
 
                 <table class="stats-table">
+                    <!-- Table caption is meant for screen readers, so it is given zero opacity in the CSS. -->
                     <caption>Stats</caption>
 
                     <!-- `tbody` is implicitly included by user agents, but it is explicitly included here to prevent confusion during styling/scripting.  -->
                     <tbody>
-                        <tr id="number-of-books">
+                        <tr>
                             <th scope="row">Books</th>
-                            <td></td>
+                            <td data-item="number-of-books"></td>
                         </tr>
 
-                        <tr id="number-of-pages">
+                        <tr>
                             <th scope="row">Pages</th>
-                            <td></td>
+                            <td data-item="number-of-pages"></td>
                         </tr>
 
-                        <tr id="number-of-books-read">
+                        <tr>
                             <th scope="row">Books read</th>
-                            <td></td>
+                            <td data-item="number-of-books-read"></td>
                         </tr>
 
-                        <tr id="number-of-books-unread">
+                        <tr>
                             <th scope="row">Books unread</th>
-                            <td></td>
+                            <td data-item="number-of-books-unread"></td>
                         </tr>
                     </tbody>
                 </table>
