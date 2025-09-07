@@ -15,6 +15,8 @@ function Book(title, author, genre, pages, read, description) {
     Object.assign(this, { title, author, genre, pages, read, description });
 }
 
+Book.prototype.toggleReadStatus = function() { this.read = !this.read };
+
 // Contains all the books the user has added to their library, in addition to a starting example book.
 const allBooks = [
     // Starting Example book
@@ -52,6 +54,19 @@ function appendAddBookButton() {
 
 const bookCardTemplate = bookList.querySelector("#book-card-li-template");
 
+function setBookCardBasedOnReadStatus(bookCard, isRead) {
+    const bookStatus = (isRead ? "read" : "unread");
+    bookCard.querySelector(".book-status").textContent = bookStatus;
+
+    const markAsReadButton = bookCard.querySelector(".mark-as-read-unread");
+
+    const markAsReadButtonTitle = `Click here if you have ${isRead ? "not " : ""}finished reading this book.`;
+    const markAsReadButtonText = "mark as " + (isRead ? "un" : "") + "read";
+
+    markAsReadButton.setAttribute("title", markAsReadButtonTitle);
+    markAsReadButton.textContent = markAsReadButtonText;
+}
+
 function displayBook(bookOrBookID) {
     let book = undefined;
 
@@ -66,7 +81,6 @@ function displayBook(bookOrBookID) {
     const numberOfPagesUnknown = (book.pages === null);
 
     const bookPages = numberOfPagesUnknown ? "Unknown number of pages" : `${book.pages} page${(book.pages === 1) ? "" : "s"}`;
-    const bookStatus = (book.read ? "read" : "unread");
 
     const bookCard = bookCardTemplate.content.cloneNode(true);
 
@@ -75,7 +89,8 @@ function displayBook(bookOrBookID) {
     bookCard.querySelector(".book-genre").textContent = book.genre;
     bookCard.querySelector(".number-of-pages").textContent = bookPages;
     bookCard.querySelector(".book-description").textContent = book.description;
-    bookCard.querySelector(".book-status").textContent = bookStatus;
+
+    setBookCardBasedOnReadStatus(bookCard, book.read);
 
     bookCard.querySelector(".book-card").dataset.id = book.id;
 
@@ -84,38 +99,53 @@ function displayBook(bookOrBookID) {
 
     // TODO: Handle the cases where optional fields have no values.
 
-    const markAsReadButton = bookCard.querySelector(".mark-as-read-unread");
-    const markAsReadButtonTitleAndText = "mark as " + (book.read ? "un" : "") + "read";
-
-    markAsReadButton.setAttribute("title", markAsReadButtonTitleAndText);
-    markAsReadButton.textContent = markAsReadButtonTitleAndText;
-
     bookList.appendChild(bookCard.cloneNode(true));
+}
+
+function toggleEmptyLibraryPrompt() {
+    const isLibraryEmpty = (allBooks.length === 0);
+
+    emptyLibraryPromptContainer.hidden = !isLibraryEmpty;
+    bookList.hidden = !(emptyLibraryPromptContainer.hidden);
+
+    return isLibraryEmpty;
 }
 
 function displayAllBooks() {
     // (1) Return early if the library is empty
-
-    const isLibraryEmpty = (allBooks.length === 0);
-
-    [emptyLibraryPromptContainer.hidden, bookList.hidden] = (isLibraryEmpty) ? [false, true] : [true, false];
     
-    if (isLibraryEmpty)
+    if (toggleEmptyLibraryPrompt() === true)
         return;
 
     // (2) Display all book cards if the library is not empty
     allBooks.forEach(book => displayBook(book));
 } displayAllBooks();
 
-document.addEventListener('click', (event) => {
+bookList.addEventListener('click', (event) => {
     if (event.target.matches(".mark-as-read-unread")) {
-        // TODO
+        const toggledBookCard = event.target.closest(".book-card");
+        const toggledBook = allBooks.find(book => (book.id === toggledBookCard.dataset.id));
+
+        toggledBook.toggleReadStatus();
+        setBookCardBasedOnReadStatus(toggledBookCard, toggledBook.read);
 
         return;
     }
 
-    if (event.target.matches(".delete-book")) {
-        
+    if (event.target.matches(".delete-book, .delete-book *")) {
+        const confirmDelete = window.confirm("This action cannot be undone." + "\n" + `Are you sure you wish to delete this book?`);
+
+        if (!confirmDelete)
+            return;
+
+        // `Node.removeChild` returns a reference to the child node removed.
+        const removedBookCard = bookList.removeChild(event.target.closest(".book-card"));
+        const indexOfRemovedBook = allBooks.findIndex(book => (book.id === removedBookCard.dataset.id));
+
+        allBooks.splice(indexOfRemovedBook, 1);
+
+        // Show the empty library prompt if the library is empty after adding the book.
+        toggleEmptyLibraryPrompt();
 
         return;
     }
@@ -152,6 +182,11 @@ dialog.addEventListener('click', (event) => {
 
             return dialogFormElement.value;
         });
+
+        displayBook(addBook(...bookData));
+
+        // Hide the empty library prompt in case the library was empty before adding the book.
+        toggleEmptyLibraryPrompt();
 
         // The dialog element will be automatically closed due to `method="dialog"` set on the `form` element.
     }
