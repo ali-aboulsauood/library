@@ -234,7 +234,7 @@ body {
 body > header {
   /* Required for positioning of the background image attribution paragraph. */
   --header-border-bottom: 4px;
-  --header-height: 40vh;
+  --header-height: 35vh;
 
   display: flex;
   flex-direction: column;
