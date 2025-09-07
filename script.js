@@ -111,13 +111,50 @@ function toggleEmptyLibraryPrompt() {
     return isLibraryEmpty;
 }
 
+const statsTableDataCells = document.querySelector(".stats-table").querySelectorAll("td");
+
+function updateLibraryStats(updateReadUnreadOnly = false) {
+    // `updateReadUnreadOnly` prevents re-evaluation of unchanged data when the user marks a book as read/unread. 
+
+    if (typeof updateReadUnreadOnly !== "boolean")
+        throw Error(`function \`updateLibraryStats\`: argument passed to \`updateReadUnreadOnly\` is not of type \`boolean\`.`);
+
+    const numberOfBooksRead = allBooks.filter(book => book.read).length;
+    const numberOfBooksReadPercent =  (allBooks.length === 0) ? 0 : Math.round(numberOfBooksRead / allBooks.length) * 100;
+
+    const libraryStats = {
+        "number-of-books-read": `${numberOfBooksRead} (${numberOfBooksReadPercent}%)`,
+        "number-of-books-unread": `${(allBooks.length - numberOfBooksRead)} (${100 - numberOfBooksReadPercent}%)`,
+    }
+
+    if (!updateReadUnreadOnly) {
+        const numberOfPages = allBooks.reduce((numberOfPages, book) => {
+            if (book.pages !== null)
+                return (book.pages + numberOfPages);
+        }, 0);
+
+        libraryStats["number-of-books"] = allBooks.length;
+        libraryStats["number-of-pages"] = numberOfPages;
+    }
+
+    for (const dataCell of statsTableDataCells) {
+        const name = dataCell.dataset.item;
+
+        if (Object.hasOwn(libraryStats, name))
+            dataCell.textContent = libraryStats[name];
+    }
+}
+
 function displayAllBooks() {
-    // (1) Return early if the library is empty
+    // (1) Display current library stats
+    updateLibraryStats();
+
+    // (2) Return early if the library is empty
     
     if (toggleEmptyLibraryPrompt() === true)
         return;
 
-    // (2) Display all book cards if the library is not empty
+    // (3) Display all book cards if the library is not empty
     allBooks.forEach(book => displayBook(book));
 } displayAllBooks();
 
@@ -128,6 +165,8 @@ bookList.addEventListener('click', (event) => {
 
         toggledBook.toggleReadStatus();
         setBookCardBasedOnReadStatus(toggledBookCard, toggledBook.read);
+
+        updateLibraryStats(true);
 
         return;
     }
@@ -144,8 +183,10 @@ bookList.addEventListener('click', (event) => {
 
         allBooks.splice(indexOfRemovedBook, 1);
 
-        // Show the empty library prompt if the library is empty after adding the book.
+        // Show the empty library prompt if the library is empty after deleting the book.
         toggleEmptyLibraryPrompt();
+
+        updateLibraryStats();
 
         return;
     }
@@ -177,8 +218,12 @@ dialog.addEventListener('click', (event) => {
             if (dialogFormElement.type === "checkbox")
                 return (dialogFormElement.checked);
 
-            if (dialogFormElement.type === "number" && dialogFormElement.value === "")
-                return null;
+            if (dialogFormElement.type === "number") {
+                if (dialogFormElement.value === "")
+                    return null;
+                else
+                    return (Number(dialogFormElement.value));
+            }
 
             return dialogFormElement.value;
         });
@@ -187,6 +232,8 @@ dialog.addEventListener('click', (event) => {
 
         // Hide the empty library prompt in case the library was empty before adding the book.
         toggleEmptyLibraryPrompt();
+
+        updateLibraryStats();
 
         // The dialog element will be automatically closed due to `method="dialog"` set on the `form` element.
     }
