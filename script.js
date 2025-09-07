@@ -77,6 +77,8 @@ function displayBook(bookOrBookID) {
     bookCard.querySelector(".book-description").textContent = book.description;
     bookCard.querySelector(".book-status").textContent = bookStatus;
 
+    bookCard.querySelector(".book-card").dataset.id = book.id;
+
     if (numberOfPagesUnknown)
         bookCard.querySelector(".number-of-pages").style.fontStyle = "italic";
 
@@ -113,7 +115,7 @@ document.addEventListener('click', (event) => {
     }
 
     if (event.target.matches(".delete-book")) {
-        // TODO
+        
 
         return;
     }
