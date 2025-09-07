@@ -41,13 +41,19 @@ The project is intended to have the following features in the (hopefully near) f
 
 3. **Color Themes**: Light, Dark, and Sepia themes.
 
+**NOTE**: Since this is a practice project, any pull requests implementing any of the aforementioned features will be rejected. If you wish to contribute, try only to resolve any [issues](https://github.com/ali-aboulsauood/library/issues) or make improvements to the project (explaining your rationale in th pull request). Read more about contributions [here](#contribution).
+
 ## Contributing to or Forking the project
 
 ### Contribution
 
 If you do not mind contributing to this project, start by checking the [issues](https://github.com/ali-aboulsauood/library/issues) and see if you can resolve them.
 
-Contributors' GitHub profiles will be linked to in the [acknowledgements](#acknowledgements) section of this README file.
+If you have any improvements to the project code, or small features to add, feel free to create a pull request.
+
+**Contributors' GitHub profiles will be linked to in the [acknowledgements](#acknowledgements) section of this README file**.
+
+**NOTE**: Since this is a practice project, any pull requests implementing any of the [upcoming features](#upcoming-features) will be rejected.
 
 ### Forking
 
