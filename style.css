@@ -487,7 +487,7 @@ main {
   margin-bottom: 8px;
 }
 
-.book-info-row > *:not(:last-child)::after {
+.book-info-row > *:not(:last-child)::after, .credit::after {
   /* U+00B7: Middle Dot Unicode character. Leading space ensures that the character is centered between the author's name and book genre. */
   content: ' \00B7';
 
@@ -800,4 +800,24 @@ input[type="checkbox"]:checked::after {
   -ms-transition: filter var(--transition-duration-and-timing), color var(--transition-duration-and-timing);
   -o-transition: filter var(--transition-duration-and-timing), color var(--transition-duration-and-timing);
   transition: filter var(--transition-duration-and-timing), color var(--transition-duration-and-timing);
+}
+
+/* (C) Footer styles */
+footer {
+  position: fixed;
+  bottom: 0;
+
+  /* Elements with fixed positioning do not span the full width of their parent, as they are taken out of the normal document flow. */
+  width: 100%;
+
+  border-top: 1px solid var(--brand-color-secondary);
+  padding: 8px 0;
+
+  text-align: center;
+
+  font-size: 1.1rem;
+}
+
+footer > * {
+  display: inline;
 }
