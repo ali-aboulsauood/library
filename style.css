@@ -741,6 +741,24 @@ input, textarea {
   transition-duration: 0.01s;
 }
 
+input[autocomplete="on"] {
+    /* Covers the background color set by WebKit and Mozilla browsers on autocompletion. */
+    --autocomplete-box-shadow: 0 0 0 64px var(--brand-color-secondary) inset !important;
+}
+
+/* Covers the background color set by WebKit and Mozilla browsers on autocompletion. */
+
+input[autocomplete="on"]:-webkit-autofill, input[autocomplete="on"]:-webkit-autofill:hover, input[autocomplete="on"]:-webkit-autofill:focus, input[autocomplete="on"]:-webkit-autofill:active {
+    -webkit-box-shadow: var(--autocomplete-box-shadow);
+    
+    /* Required to override the text color set by WebKit browsers on autocompletion. */
+    -webkit-text-fill-color: var(--text-color-content) !important;
+}
+
+input[autocomplete="on"]:-moz-autofill, input[autocomplete="on"]:-moz-autofill:hover, input[autocomplete="on"]:-moz-autofill:focus, input[autocomplete="on"]:-moz-autofill:active {
+    box-shadow: var(--autocomplete-box-shadow);
+}
+
 input::placeholder, textarea::placeholder {
   color: inherit;
 
