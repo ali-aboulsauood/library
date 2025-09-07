@@ -842,13 +842,6 @@ input[type="checkbox"]:checked::after {
 
 /* (C) Footer styles */
 body > footer {
-  /* TODO: Make the header stick to its position on the viewport and shrink on scrolling down. */
-  position: fixed;
-  bottom: 0;
-
-  /* Elements with fixed positioning do not span the full width of their parent, as they are taken out of the normal document flow. */
-  width: 100%;
-
   border-top: 1px solid var(--brand-color-secondary);
   padding: 8px 0;
 
