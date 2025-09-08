@@ -1,6 +1,11 @@
 # Library
 
-A small web browser-based library app, created as a practice with [The Odin Project](https://www.theodinproject.com) (TOP) on [Objects and Object Constructors in JavaScript](https://www.theodinproject.com/lessons/node-path-javascript-objects-and-object-constructors).
+<img src="logo.png" alt="Library logo" title="Library logo" width="25%" style="display: block; margin: 16px auto;">
+<img src="screenshot.png" alt="Screenshot of Library" title="Library" width="75%" height="75%" style="display: block; margin: 16px auto;">
+
+> A simple e-library to put your beloved books on display
+
+_Library_ is a small web browser-based library app, created as a practice with [The Odin Project](https://www.theodinproject.com) (TOP) on [Objects and Object Constructors in JavaScript](https://www.theodinproject.com/lessons/node-path-javascript-objects-and-object-constructors).
 
 This is my [eighth practice project](https://www.theodinproject.com/lessons/node-path-javascript-library) with The Odin Project.
 I would appreciate it if you also take a look at [my other projects](#other-projects), including [my other projects with TOP](#other-projects-with-the-odin-project).
@@ -11,19 +16,19 @@ You can view the project through its [GitHub Pages website](https://ali-aboulsau
 
 ### Before you view the project
 
-- This project is best viewed in **a maximized [Google Chrome](https://www.google.com/chrome) browser window on a `1920 x 1080` monitor**. It is not guaranteed that other browsers, window sizes or resolutions will produce the intended, or even fairly acceptable, visual results. Also, **_this project is NOT designed for mobile browsers_**.
+- This project is best viewed in **a maximized [Google Chrome](https://www.google.com/chrome) browser window on a 1920 x 1080 monitor**. It is not guaranteed that other browsers, window sizes or resolutions will produce the intended, or even fairly acceptable, visual results. Also, **_this project is NOT designed for mobile browsers_**.
 
-- **Your custom library will NOT be saved** and will be lost on reloading (refreshing) the page or on closing the page tab or the web browser and loading the page again, though I intend to [implement this feature in the future](#upcoming-features).
+- **Your custom library will _NOT_ be saved** and will be lost on reloading (refreshing) the page or on closing the page tab or the web browser and loading the page again, though I intend to [implement this feature in the future](#upcoming-features).
 
 If you notice any bugs or issues in the project, feel free to [open an issue on GitHub](https://github.com/ali-aboulsauood/library/issues/new).
 
-And finally, **If you like my project, please support me by starring it on GitHub and liking it on the project's [community solutions page](https://www.theodinproject.com/lessons/node-path-javascript-library/project_submissions).**
+And finally, **If you like my project, please support me by starring it on GitHub and liking it on the project's [community solutions page](https://www.theodinproject.com/lessons/node-path-javascript-library/project_submissions)**.
 
 ## Features
 
 Currently, the project has the following features:
 
-1. **Add Book**: You can add a new book the button labeled "_Add Book_", which can be found on the right side of the header, on the top-right side of the _Library_ section, and additionally in the library section if the library is empty. Currently, you can set the following attributes foe each book: title, author name, genre, number of pages (optional), description (optional), and whether you have finished reading the book.
+1. **Add Book**: You can add a new book the button labeled "_Add Book_", which can be found on the right side of the header, on the top-right side of the _Library_ section, and additionally in the library section if the library is empty. Currently, you can set the following attributes for each book: title, author name, genre, number of pages (optional), description (optional), and whether you have finished reading the book.
 
 2. **Delete Book**: You can delete a book from the library by clicking on the trash can icon located at the bottom-right corner of its book card.
 
@@ -58,6 +63,44 @@ If you have any improvements to the project code, or small features to add, feel
 ### Forking
 
 If you decide to fork this project, please link to [this repository](https://github.com/ali-aboulsauood/library) in your repository's README file and to [the project's GitHub Pages website](https://ali-aboulsauood.github.io/library) in your project release. This is not required by the [license of this project](https://github.com/ali-aboulsauood/sign-up-form/blob/main/LICENSE), but I would appreciate it.
+
+## Design
+
+### Colors
+
+The project relies mainly on three colors:
+
+1. **Primary Color**: Used mainly as a background color.
+2. **Secondary Color**: Used mainly as a foreground color for the page title (logo) and subtitle, and other titles such as section and book titles.
+3. **Text Color**: Used for text content.
+
+The following are the hexadecimal values for the three aforementioned colors in light and dark themes (I have not decided the colors for the sepia theme yet - you can [open an issue](https://github.com/ali-aboulsauood/library/issues/new) if you want to suggest them).
+
+Click on a hexadecimal color value to view the color on [ColorHexa](https://www.colorhexa.com).
+
+<!-- Generated by Markdown Table Generator: https://www.tablesgenerator.com/markdown_tables. I would appreciate it if someone organizes this mess, though. -->
+
+|                    |               **Primary Color**               |              **Secondary Color**              |                     **Text Color**                    |
+|:------------------:|:---------------------------------------------:|:---------------------------------------------:|:-----------------------------------------------------:|
+| **Dark** (Default) | [`#212529`](https://www.colorhexa.com/212529) | [`#7C6857`](https://www.colorhexa.com/7c6857) | [`#FFFFFF`](https://www.colorhexa.com/ffffff) (white) |
+| **Light**          | [`#EE7200`](https://www.colorhexa.com/ee7200) | [`#EFEFEF`](https://www.colorhexa.com/efefef) | [`#000000`](https://www.colorhexa.com/000000) (black) |
+
+These colors were taken from the [Grand Egyptian Museum (GEM) website](https://www.visit-gem.com).
+
+### Fonts
+
+The project relies mainly on three fonts (click font names to visit their download pages).
+
+1. [Cinzel Decorative](https://fonts.google.com/specimen/Cinzel+Decorative) (Bold) for page title (logo).
+2. [Noto Serif](https://fonts.google.com/noto/specimen/Noto+Serif) (Regular) for page subtitle.
+3. [Junicode](https://www.fontsquirrel.com/fonts/junicode) (Bold and Italic) for page text. This is the font used for the title and subtitle text on the [Zen Browser website](https://zen-browser.app/)
+
+### Images and Icons
+
+The background image of the page and dialog headers is ["_close up photo of educational book lot_"](https://unsplash.com/photos/closeup-photo-of-educational-book-lot-D1Pa78SnrH0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) by [Drew Coffman](https://unsplash.com/@drewcoffman?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](https://www.unsplash.com).
+You can find the attribution at the bottom-left corner of the header on hovering over it.
+
+Icons are mainly used for page buttons. They have been downloaded from [_Pictogrammers_' Material Design Icons](https://pictogrammers.com/library/mdi/). The original SVG files can be found in [the icons directory](https://github.com/ali-aboulsauood/library/tree/main/design/icons) of this repository.
 
 ## Acknowledgements
 
