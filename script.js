@@ -182,11 +182,6 @@ bookList.addEventListener('click', (event) => {
     }
 
     if (event.target.matches(".delete-book, .delete-book *")) {
-        const confirmDelete = window.confirm("This action cannot be undone." + "\n" + `Are you sure you wish to delete this book?`);
-
-        if (!confirmDelete)
-            return;
-
         // `Node.removeChild` returns a reference to the child node removed.
         const removedBookCard = bookList.removeChild(event.target.closest(".book-card"));
         const indexOfRemovedBook = allBooks.findIndex(book => (book.id === removedBookCard.dataset.id));
