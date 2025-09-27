@@ -169,7 +169,7 @@ function displayAllBooks() {
 } displayAllBooks();
 
 bookList.addEventListener('click', (event) => {
-    if (event.target.matches(".mark-as-read-unread")) {
+    if (event.target.closest(".mark-as-read-unread") !== null) {
         const toggledBookCard = event.target.closest(".book-card");
         const toggledBook = allBooks.find(book => (book.id === toggledBookCard.dataset.id));
 
@@ -181,7 +181,7 @@ bookList.addEventListener('click', (event) => {
         return;
     }
 
-    if (event.target.matches(".delete-book, .delete-book *")) {
+    if (event.target.closest(".delete-book") !== null) {
         // `Node.removeChild` returns a reference to the child node removed.
         const removedBookCard = bookList.removeChild(event.target.closest(".book-card"));
         const indexOfRemovedBook = allBooks.findIndex(book => (book.id === removedBookCard.dataset.id));
@@ -201,14 +201,14 @@ const dialog = document.querySelector("#add-edit-book-dialog");
 const dialogForm = dialog.querySelector("form");
 
 document.addEventListener('click', (event) => {
-    if (event.target.matches(".add-book, .edit-book")) {
+    if (event.target.closest(".add-book, .edit-book") !== null) {
         // Open the dialog as a modal.
         dialog.showModal();
 
         // Reset form inputs to their default values.
         dialogForm.reset();
 
-        const isAddBook = event.target.matches(".add-book");
+        const isAddBook = event.target.closest(".add-book") !== null;
 
         const dialogTitle = dialog.querySelector(".dialog-title");
         dialogTitle.textContent = isAddBook ? "Add New Book" : "Edit Book";
@@ -219,35 +219,34 @@ let bookData = [];
 
 const dialogFormElements = Array.from(dialog.querySelectorAll("input, textarea"));
 
+dialog.addEventListener('submit', () => {
+    bookData = dialogFormElements.map((dialogFormElement) => {
+        if (dialogFormElement.type === "checkbox")
+            return (dialogFormElement.checked);
+
+        if (dialogFormElement.type === "number") {
+            if (dialogFormElement.value === "")
+                return null;
+            else
+                return (Number(dialogFormElement.value));
+        }
+
+        return dialogFormElement.value;
+    });
+
+    displayBook(addBook(...bookData));
+
+    // Hide the empty library prompt in case the library was empty before adding the book.
+    toggleEmptyLibraryPrompt();
+
+    updateLibraryStats();
+
+    // The dialog element will be automatically closed due to `method="dialog"` set on the `form` element.
+});
+
 dialog.addEventListener('click', (event) => {
-    if (event.target.matches("[value='discard'], [value='discard'] *"))
+    if (event.target.closest("[value='discard']"))
         dialog.close("noData");
-    else if (event.target.matches("[value='save'], [value='save'] *")) {
-        // The following code will not be valid when an "edit book" functionality is added.
-
-        bookData = dialogFormElements.map((dialogFormElement) => {
-            if (dialogFormElement.type === "checkbox")
-                return (dialogFormElement.checked);
-
-            if (dialogFormElement.type === "number") {
-                if (dialogFormElement.value === "")
-                    return null;
-                else
-                    return (Number(dialogFormElement.value));
-            }
-
-            return dialogFormElement.value;
-        });
-
-        displayBook(addBook(...bookData));
-
-        // Hide the empty library prompt in case the library was empty before adding the book.
-        toggleEmptyLibraryPrompt();
-
-        updateLibraryStats();
-
-        // The dialog element will be automatically closed due to `method="dialog"` set on the `form` element.
-    }
 });
 
 // Script to update the number of characters left in the description textbox as the user modifies its content.
