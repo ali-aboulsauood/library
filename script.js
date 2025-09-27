@@ -82,7 +82,7 @@ function displayBook(bookOrBookID) {
         book = bookOrBookID;
 
     if (book === undefined)
-        console.error(`Attempting to display an invalid or non-existent book.`);
+        throw Error("Attempting to represent a non-existent `Book` object in the DOM.");
 
     const numberOfPagesUnknown = (book.pages === null);
 
@@ -126,7 +126,8 @@ function updateLibraryStats(updateReadUnreadOnly = false) {
         throw Error(`function \`updateLibraryStats\`: argument passed to \`updateReadUnreadOnly\` is not of type \`boolean\`.`);
 
     const numberOfBooksRead = allBooks.filter(book => book.read).length;
-    const numberOfBooksReadPercent =  (allBooks.length === 0) ? 0 : Math.round(numberOfBooksRead / allBooks.length) * 100;
+    // Rounding the result of division before multiplying it by 100 will cause errors, as, for example, `Math.round(1/2) * 100 === 1 * 100` and `1 * 100 === 1`.
+    const numberOfBooksReadPercent =  (allBooks.length === 0) ? 0 : Math.round((numberOfBooksRead / allBooks.length) * 100);
 
     const libraryStats = {
         "number-of-books-read": `${numberOfBooksRead} (${numberOfBooksReadPercent}%)`,
@@ -137,6 +138,9 @@ function updateLibraryStats(updateReadUnreadOnly = false) {
         const numberOfPages = allBooks.reduce((numberOfPages, book) => {
             if (book.pages !== null)
                 return (book.pages + numberOfPages);
+
+            // If the number of pages is not specified, return 0 added to the current total number of pages, which is equivalent to simply returning it.
+            return numberOfPages;
         }, 0);
 
         libraryStats["number-of-books"] = allBooks.length;
@@ -224,6 +228,8 @@ dialog.addEventListener('click', (event) => {
     if (event.target.matches("[value='discard'], [value='discard'] *"))
         dialog.close("noData");
     else if (event.target.matches("[value='save'], [value='save'] *")) {
+        // The following code will not be valid when an "edit book" functionality is added.
+
         bookData = dialogFormElements.map((dialogFormElement) => {
             if (dialogFormElement.type === "checkbox")
                 return (dialogFormElement.checked);
