@@ -1,21 +1,27 @@
 "use strict";
 
-function Book(title, author, genre, pages, read, description) {
-    if (!new.target)
-        throw Error(`Constructor ${Book.name} called without the \`new\` operator.`);
+class Book {
+    // Modern JavaScript Syntax defines explicitly defines class fields outside of the constructor, even if unnecessary.
+    // I have avoided this practice, given the relatively great number of class fields, where explicit definition will make the class definition more cluttered
 
-    // TODO: Handle validation and sanitization methods for the arguments of `Book` in the markup and the script.
+    // The check for whether the constructor was called with the operator `new` is not needed here.
 
-    // a universally unique identifier (UUID) that ensures that each book has a unique and stable identifier, preventing issues when books are removed or rearranged.
-    this.id = crypto.randomUUID();
+    constructor(title, author, genre, pages, read, description) {
+        // TODO: Handle validation and sanitization methods for the arguments of `Book` in the markup and the script.
 
-    // TODO: Find a way to avoid repeating book parameters.
+        const publicFields = {title, author, genre, pages, read, description};
 
-    // Refer to https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign.
-    Object.assign(this, { title, author, genre, pages, read, description });
-}
+        // a universally unique identifier (UUID) that ensures that each book has a unique and stable identifier, preventing issues when books are removed or rearranged.
+        this.id = crypto.randomUUID();
 
-Book.prototype.toggleReadStatus = function() { this.read = !this.read };
+        // Refer to https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign.
+        Object.assign(this, publicFields);
+    };
+
+    toggleReadStatus() {
+        this.read = !this.read;
+    };
+};
 
 // Contains all the books the user has added to their library, in addition to a starting example book.
 const allBooks = [
