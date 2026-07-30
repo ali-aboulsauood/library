@@ -12,7 +12,7 @@ I would appreciate it if you also take a look at [my other projects](#other-proj
 
 ## Viewing the project
 
-You can view the project through its [GitHub Pages website](https://ali-aboulsauood.github.io/library).
+You can view the project through its [GitHub Pages website](https://alikamel-dev.github.io/library).
 
 ### Before you view the project
 
@@ -20,7 +20,7 @@ You can view the project through its [GitHub Pages website](https://ali-aboulsau
 
 - **Your custom library will _NOT_ be saved** and will be lost on reloading (refreshing) the page or on closing the page tab or the web browser and loading the page again, though I intend to [implement this feature in the future](#upcoming-features).
 
-If you notice any bugs or issues in the project, feel free to [open an issue on GitHub](https://github.com/ali-aboulsauood/library/issues/new).
+If you notice any bugs or issues in the project, feel free to [open an issue on GitHub](https://github.com/alikamel-dev/library/issues/new).
 
 And finally, **If you like my project, please support me by starring it on GitHub and liking it on the project's [community solutions page](https://www.theodinproject.com/lessons/node-path-javascript-library/project_submissions)**.
 
@@ -46,13 +46,13 @@ The project is intended to have the following features in the (hopefully near) f
 
 3. **Color Themes**: Light, Dark, and Sepia themes.
 
-**NOTE**: Since this is a practice project, any pull requests implementing any of the aforementioned features will be rejected. If you wish to contribute, try only to resolve any [issues](https://github.com/ali-aboulsauood/library/issues) or make improvements to the project (explaining your rationale in th pull request). Read more about contributions [here](#contribution).
+**NOTE**: Since this is a practice project, any pull requests implementing any of the aforementioned features will be rejected. If you wish to contribute, try only to resolve any [issues](https://github.com/alikamel-dev/library/issues) or make improvements to the project (explaining your rationale in th pull request). Read more about contributions [here](#contribution).
 
 ## Contributing to or Forking the project
 
 ### Contribution
 
-If you do not mind contributing to this project, start by checking the [issues](https://github.com/ali-aboulsauood/library/issues) and see if you can resolve them.
+If you do not mind contributing to this project, start by checking the [issues](https://github.com/alikamel-dev/library/issues) and see if you can resolve them.
 
 If you have any improvements to the project code, or small features to add, feel free to create a pull request.
 
@@ -62,7 +62,7 @@ If you have any improvements to the project code, or small features to add, feel
 
 ### Forking
 
-If you decide to fork this project, please link to [this repository](https://github.com/ali-aboulsauood/library) in your repository's README file and to [the project's GitHub Pages website](https://ali-aboulsauood.github.io/library) in your project release. This is not required by the [license of this project](https://github.com/ali-aboulsauood/sign-up-form/blob/main/LICENSE), but I would appreciate it.
+If you decide to fork this project, please link to [this repository](https://github.com/alikamel-dev/library) in your repository's README file and to [the project's GitHub Pages website](https://alikamel-dev.github.io/library) in your project release. This is not required by the [license of this project](https://github.com/alikamel-dev/sign-up-form/blob/main/LICENSE), but I would appreciate it.
 
 ## Design
 
@@ -74,7 +74,7 @@ The project relies mainly on three colors:
 2. **Secondary Color**: Used mainly as a foreground color for the page title (logo) and subtitle, and other titles such as section and book titles.
 3. **Text Color**: Used for text content.
 
-The following are the hexadecimal values for the three aforementioned colors in light and dark themes (I have not decided the colors for the sepia theme yet - you can [open an issue](https://github.com/ali-aboulsauood/library/issues/new) if you want to suggest them).
+The following are the hexadecimal values for the three aforementioned colors in light and dark themes (I have not decided the colors for the sepia theme yet - you can [open an issue](https://github.com/alikamel-dev/library/issues/new) if you want to suggest them).
 
 Click on a hexadecimal color value to view the color on [ColorHexa](https://www.colorhexa.com).
 
@@ -100,7 +100,7 @@ The project relies mainly on three fonts (click font names to visit their downlo
 The background image of the page and dialog headers is ["_close up photo of educational book lot_"](https://unsplash.com/photos/closeup-photo-of-educational-book-lot-D1Pa78SnrH0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) by [Drew Coffman](https://unsplash.com/@drewcoffman?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](https://www.unsplash.com).
 You can find the attribution at the bottom-left corner of the header on hovering over it.
 
-Icons are mainly used for page buttons. They have been downloaded from [_Pictogrammers_' Material Design Icons](https://pictogrammers.com/library/mdi/). The original SVG files can be found in [the icons directory](https://github.com/ali-aboulsauood/library/tree/main/design/icons) of this repository.
+Icons are mainly used for page buttons. They have been downloaded from [_Pictogrammers_' Material Design Icons](https://pictogrammers.com/library/mdi/). The original SVG files can be found in [the icons directory](https://github.com/alikamel-dev/library/tree/main/design/icons) of this repository.
 
 ## Acknowledgements
 
@@ -110,17 +110,17 @@ _No one has contributed to this project yet - [Be the first to contribute!](#con
 
 Feel free to view my other projects on GitHub:
 
-- [_Rock, Paper, Scissors!_ console game](https://github.com/ali-aboulsauood/rock-paper-scissors-cpp)
-- [_Math Game_](https://github.com/ali-aboulsauood/math-game)
+- [_Rock, Paper, Scissors!_ console game](https://github.com/alikamel-dev/rock-paper-scissors-cpp)
+- [_Math Game_](https://github.com/alikamel-dev/math-game)
 
 ### Other Projects with The Odin Project
 
 The following are my previous projects with The Odin Project, ordered from the earliest to the most recent:
 
-1. [_Recipes_](https://github.com/ali-aboulsauood/odin-recipes)
-2. [_Landing Page_](https://github.com/ali-aboulsauood/landing-page)
-3. [_Rock, Paper, Scissors_](https://github.com/ali-aboulsauood/rock-paper-scissors)
-4. [_Etch-A-Sketch_](https://github.com/ali-aboulsauood/etch-a-sketch)
-5. [_Calculator_](https://github.com/ali-aboulsauood/calculator)
-6. [_Sign-Up Form_](https://github.com/ali-aboulsauood/sign-up-form)
-7. [_Admin Dashboard_](https://github.com/ali-aboulsauood/admin-dashboard)
+1. [_Recipes_](https://github.com/alikamel-dev/odin-recipes)
+2. [_Landing Page_](https://github.com/alikamel-dev/landing-page)
+3. [_Rock, Paper, Scissors_](https://github.com/alikamel-dev/rock-paper-scissors)
+4. [_Etch-A-Sketch_](https://github.com/alikamel-dev/etch-a-sketch)
+5. [_Calculator_](https://github.com/alikamel-dev/calculator)
+6. [_Sign-Up Form_](https://github.com/alikamel-dev/sign-up-form)
+7. [_Admin Dashboard_](https://github.com/alikamel-dev/admin-dashboard)
